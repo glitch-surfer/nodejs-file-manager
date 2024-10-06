@@ -3,9 +3,7 @@ import {cd} from "./helpers/nwd/cd.js";
 import {up} from "./helpers/nwd/up.js";
 import {ls} from "./helpers/nwd/ls.js";
 
-const isSingleCommand = (command) => {
-    return command.split(' ').length === 1
-}
+const isSingleCommand = (command) => command.split(' ').length === 1
 
 export const commandsMap = new Map([
     ['cd', {

@@ -7,7 +7,8 @@ export const ls = async (workingDirectory) => {
         const content = await fs.promises.readdir(dirToPrint)
         const mappedContent = (await Promise.all(content
             .filter(file => {
-                if (workingDirectory.path === workingDirectory.systemRoot) {
+                const shouldFilterForbiddenFiles = workingDirectory.path === workingDirectory.systemRoot
+                if (shouldFilterForbiddenFiles) {
                     return !file.startsWith('.')
                 }
                 return true
@@ -32,5 +33,4 @@ export const ls = async (workingDirectory) => {
     } catch (err) {
         throw new Error(err)
     }
-
 }

@@ -12,9 +12,8 @@ const rl = readline.createInterface({
 
 const workingDirectory = new WorkingDirectory();
 const commandService = new CommandsService(workingDirectory)
-const goodBye = () => console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
 const exit = () => {
-    goodBye();
+    console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
     rl.close();
     process.exit();
 };
