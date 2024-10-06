@@ -16,6 +16,10 @@ export const getOS = (flag) => {
         case '--homedir':
             console.log(`Home directory: ${os.homedir()}`);
             break;
+
+        case '--username':
+            console.log(`Username: ${os.userInfo().username}`);
+            break;
         default:
             throw new Error('Invalid flag');
     }
