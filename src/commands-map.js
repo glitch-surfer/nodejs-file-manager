@@ -31,33 +31,33 @@ export const commandsMap = new Map([
         }
     }],
     ['up', {
-        isValidCommand: (command) => isSingleCommand(command),
+        isValidCommand: isSingleCommand,
         execute: (command, workingDirectory) => {
             return up(workingDirectory);
         }
     }],
     ['ls', {
-        isValidCommand: (command) => isSingleCommand(command),
+        isValidCommand: isSingleCommand,
         execute: (command, workingDirectory) => {
             return ls(workingDirectory);
         }
     }],
     ['cat', {
-        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        isValidCommand: isCommandWithSingleArgument,
         execute: (command, workingDirectory) => {
             const fileName = getFirstArgument(command);
             return read(fileName, workingDirectory);
         }
     }],
     ['add', {
-        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        isValidCommand: isCommandWithSingleArgument,
         execute: (command, workingDirectory) => {
             const fileName = getFirstArgument(command);
             return create(fileName, workingDirectory);
         }
     }],
     ['rn', {
-        isValidCommand: (command) => isCommandWithTwoArguments(command),
+        isValidCommand: isCommandWithTwoArguments,
         execute: (command, workingDirectory) => {
             const prevFileName = getFirstArgument(command);
             const newFileName = getSecondArgument(command);
@@ -65,7 +65,7 @@ export const commandsMap = new Map([
         }
     }],
     ['cp', {
-        isValidCommand: (command) => isCommandWithTwoArguments(command),
+        isValidCommand: isCommandWithTwoArguments,
         execute: (command, workingDirectory) => {
             const sourceFileName = getFirstArgument(command);
             const newFileName = getSecondArgument(command);
@@ -73,7 +73,7 @@ export const commandsMap = new Map([
         }
     }],
     ['mv', {
-        isValidCommand: (command) => isCommandWithTwoArguments(command),
+        isValidCommand: isCommandWithTwoArguments,
         execute: (command, workingDirectory) => {
             const prevDestinationFileName = getFirstArgument(command);
             const newDestinationFileName = getSecondArgument(command);
@@ -81,21 +81,21 @@ export const commandsMap = new Map([
         }
     }],
     ['rm', {
-        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        isValidCommand: isCommandWithSingleArgument,
         execute: (command, workingDirectory) => {
             const fileName = getFirstArgument(command);
             return remove(fileName, workingDirectory);
         }
     }],
     ['os', {
-        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        isValidCommand: isCommandWithSingleArgument,
         execute: (command, workingDirectory) => {
             const flag = getFirstArgument(command);
             return getOS(flag);
         }
     }],
     ['hash', {
-        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        isValidCommand: isCommandWithSingleArgument,
         execute: (command, workingDirectory) => {
             const fileName = getFirstArgument(command);
             return getHash(fileName, workingDirectory);
