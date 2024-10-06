@@ -10,7 +10,7 @@ export const cd = async (pathToNavigate, workingDirectory) => {
         return;
     }
 
-    const newPath = path.join(workingDirectory.path, pathToNavigate);
+    const newPath = path.isAbsolute(pathToNavigate) ? pathToNavigate : path.join(workingDirectory.path, pathToNavigate);
     if (!fs.existsSync(newPath) || (await fs.promises.stat(newPath)).isFile()) {
         throw new Error('No such directory')
     }
