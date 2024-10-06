@@ -1,6 +1,6 @@
 import * as readline from "node:readline";
 import {CommandsService} from "./commands-service.js";
-import {WorkingDirectory} from "./helpers/nwd/working-directory.js";
+import {WorkingDirectory} from "./working-directory.js";
 
 const USERNAME_KEY = '--username=';
 const userName = process.argv.filter(arg => arg.includes(USERNAME_KEY))[0]?.replace(USERNAME_KEY, '') ?? 'Default Username';

@@ -4,10 +4,12 @@ import {up} from "./helpers/nwd/up.js";
 import {ls} from "./helpers/nwd/ls.js";
 import {read} from "./helpers/fs/read.js";
 import {create} from "./helpers/fs/create.js";
+import {rename} from "./helpers/fs/rename.js";
 
 const isSingleCommand = (command) => command.split(' ').length === 1;
 const isCommandWithSingleArgument = (command) => command.split(' ').slice(1).map(arg => arg?.toString()?.trim()).filter(Boolean).length === 1;
 const getArgument = (command) => command.split(' ')[1];
+const isCommandWithTwoArguments = (command) => command.split(' ').slice(1).map(arg => arg?.toString()?.trim()).filter(Boolean).length === 2;
 
 export const commandsMap = new Map([
     ['cd', {
@@ -46,5 +48,13 @@ export const commandsMap = new Map([
             const fileName = getArgument(command);
             return create(fileName, workingDirectory);
         }
+    }],
+    ['rn', {
+        isValidCommand: (command) => isCommandWithTwoArguments(command),
+        execute: (command, workingDirectory) => {
+            const prevFileName = getArgument(command);
+            const newFileName = command.split(' ')[2];
+            return rename(prevFileName, newFileName, workingDirectory);
+        }
     }]
-])
+]);

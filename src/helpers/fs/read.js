@@ -1,14 +1,12 @@
-import path from "path";
 import fs from "fs";
+import {getPathFromArg} from "../get-path-from-arg.js";
 
 export const read = async (fileName, workingDirectory) => {
     if (!fileName) {
         throw new Error('File name is required');
     }
 
-    const filePath = path.isAbsolute(fileName)
-        ? fileName
-        : path.join(workingDirectory.path, fileName);
+    const filePath = getPathFromArg(fileName, workingDirectory);
 
     try {
         const stats = await fs.promises.stat(filePath);
