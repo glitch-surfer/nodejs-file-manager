@@ -9,6 +9,7 @@ import {copy} from "./helpers/fs/copy.js";
 import {move} from "./helpers/fs/move.js";
 import {remove} from "./helpers/fs/remove.js";
 import {getOS} from "./helpers/os/eol.js";
+import {getHash} from "./helpers/hash/hash.js";
 
 const isSingleCommand = (command) => command.split(' ').length === 1;
 const isCommandWithSingleArgument = (command) => command.split(' ').slice(1).map(arg => arg?.toString()?.trim()).filter(Boolean).length === 1;
@@ -91,5 +92,12 @@ export const commandsMap = new Map([
             const flag = getFirstArgument(command);
             return getOS(flag);
         }
-    }]
+    }],
+    ['hash', {
+        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        execute: (command, workingDirectory) => {
+            const fileName = getFirstArgument(command);
+            return getHash(fileName, workingDirectory);
+        }
+    }],
 ]);
