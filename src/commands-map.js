@@ -8,6 +8,7 @@ import {rename} from "./helpers/fs/rename.js";
 import {copy} from "./helpers/fs/copy.js";
 import {move} from "./helpers/fs/move.js";
 import {remove} from "./helpers/fs/remove.js";
+import {getOS} from "./helpers/os/eol.js";
 
 const isSingleCommand = (command) => command.split(' ').length === 1;
 const isCommandWithSingleArgument = (command) => command.split(' ').slice(1).map(arg => arg?.toString()?.trim()).filter(Boolean).length === 1;
@@ -84,4 +85,11 @@ export const commandsMap = new Map([
             return remove(fileName, workingDirectory);
         }
     }],
+    ['os', {
+        isValidCommand: (command) => isCommandWithSingleArgument(command),
+        execute: (command, workingDirectory) => {
+            const flag = getFirstArgument(command);
+            return getOS(flag);
+        }
+    }]
 ]);
