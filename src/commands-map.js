@@ -10,6 +10,7 @@ import {move} from "./helpers/fs/move.js";
 import {remove} from "./helpers/fs/remove.js";
 import {getOS} from "./helpers/os/eol.js";
 import {getHash} from "./helpers/hash/hash.js";
+import {compressDecompress} from "./helpers/zlib/compressDecompress.js";
 
 const isSingleCommand = (command) => command.split(' ').length === 1;
 const isCommandWithSingleArgument = (command) => command.split(' ').slice(1).map(arg => arg?.toString()?.trim()).filter(Boolean).length === 1;
@@ -100,4 +101,20 @@ export const commandsMap = new Map([
             return getHash(fileName, workingDirectory);
         }
     }],
+    ['compress', {
+        isValidCommand: isCommandWithTwoArguments,
+        execute: (command, workingDirectory) => {
+            const fileName = getFirstArgument(command);
+            const destinationFileName = getSecondArgument(command);
+            return compressDecompress(fileName, destinationFileName, 'compress', workingDirectory);
+        }
+    }],
+    ['decompress', {
+        isValidCommand: isCommandWithTwoArguments,
+        execute: (command, workingDirectory) => {
+            const fileName = getFirstArgument(command);
+            const destinationFileName = getSecondArgument(command);
+            return compressDecompress(fileName, destinationFileName, 'decompress', workingDirectory);
+        }
+    }]
 ]);
