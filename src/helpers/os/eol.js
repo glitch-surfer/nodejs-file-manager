@@ -20,6 +20,10 @@ export const getOS = (flag) => {
         case '--username':
             console.log(`Username: ${os.userInfo().username}`);
             break;
+
+        case '--architecture':
+            console.log(`Architecture: ${os.arch()}`);
+            break;
         default:
             throw new Error('Invalid flag');
     }
