@@ -37,6 +37,7 @@ const promptUser = () => {
                     console.log('Invalid input');
                 }
             } catch (err) {
+                console.log(err);
                 console.log('Operation failed')
             }
 
