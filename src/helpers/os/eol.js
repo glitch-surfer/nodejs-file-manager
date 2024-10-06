@@ -12,6 +12,10 @@ export const getOS = (flag) => {
                 speed: cpu.speed,
             })));
             break;
+
+        case '--homedir':
+            console.log(`Home directory: ${os.homedir()}`);
+            break;
         default:
             throw new Error('Invalid flag');
     }
