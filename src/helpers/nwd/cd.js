@@ -1,4 +1,3 @@
-import path from "path";
 import {up} from "./up.js";
 import * as fs from "node:fs";
 import {getPathFromArg} from "../get-path-from-arg.js";
